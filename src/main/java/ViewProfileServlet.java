@@ -28,7 +28,6 @@ public class ViewProfileServlet extends HttpServlet {
         String number = request.getParameter("number");
         int userNum = Integer.parseInt(number);
 
-
         String again = (userNum < n) ? "Higher" : "Lower";
 
         request.setAttribute("n", n);
@@ -40,5 +39,14 @@ public class ViewProfileServlet extends HttpServlet {
         } else {
             request.getRequestDispatcher("/profile.jsp").forward(request, response);
         }
+//        Bonus: create a link that will reset the random computer number to a new number
+//        DRILL 1 (HINTS)
+//                Use one servlet and two JSPs.
+//                Don't worry about styling.
+//        DRILL 2 (HINTS)
+//                One servlet and two JSPs.
+//        Use style tags
+//        DRILL 3
+//        Use an instance field on a servlet
     }
 }
