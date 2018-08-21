@@ -5,11 +5,12 @@
         <jsp:param name="title" value="Your Profile" />
     </jsp:include>
 </head>
-<body>
+<body style="background-color:${color}">
     <jsp:include page="partials/navbar.jsp" />
 
     <div class="container">
-        <h1>Well, howdy, ${name}</h1>
+        <h1>Correct! ${number}</h1>
+        <h2>Random num: ${n}</h2>
     </div>
 
 </body>
