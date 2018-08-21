@@ -9,8 +9,12 @@
 <html>
 <head>
     <title>Guess again</title>
-    <h2>Guess again</h2>
-
+    <h2>${userNum} is incorrect</h2>
+    <h1>${again}</h1>
+    <p>try ${n}</p>
+    <form method="POST" action="/login.jsp">
+        <input type="submit" value="Login Page" name="submit">
+    </form>
 
 </head>
 <body>

@@ -8,6 +8,10 @@ import java.util.Random;
 
 @WebServlet(name = "ViewProfileServlet", urlPatterns = "/guess") //#1/name //#2pickcolor
 public class ViewProfileServlet extends HttpServlet {
+    public static Random rand = new Random();
+    public static int n = rand.nextInt(5) + 1;
+
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.getRequestDispatcher("/login.jsp").forward(request, response);
     }
@@ -21,20 +25,20 @@ public class ViewProfileServlet extends HttpServlet {
 //        request.setAttribute("color", color);
 //        request.getRequestDispatcher("/profile.jsp").forward(request, response);
 
-        Random rand = new Random();
-        int n = rand.nextInt(5) + 1;
-
         String number = request.getParameter("number");
         int userNum = Integer.parseInt(number);
-        request.setAttribute("number", number);
+
+
+        String again = (userNum < n) ? "Higher" : "Lower";
+
+        request.setAttribute("n", n);
         request.setAttribute("userNum", userNum);
+        request.setAttribute("again", again);
 
         if(userNum != n) {
-            request.getRequestDispatcher("/login.jsp").forward(request, response);
+            request.getRequestDispatcher("/wrong.jsp").forward(request, response);
         } else {
             request.getRequestDispatcher("/profile.jsp").forward(request, response);
         }
-
-
     }
 }

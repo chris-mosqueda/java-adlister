@@ -21,7 +21,7 @@
         <form action="/guess" method="POST">
             <div class="form-group">
                 <label for="number">Guess the correct number</label>
-                <input id="number" name="number" class="form-control" type="number">
+                <input id="number" name="number" class="form-control" type="number" min="1" max="100">
             </div>
             <%--  2  <div class="form-group">--%>
                 <%--<label for="color">What is your favorite color?</label>--%>
