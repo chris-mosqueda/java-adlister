@@ -8,14 +8,13 @@ import java.util.List;
 
 @WebServlet(name = "ViewAdServlet", urlPatterns = "/profile/ads")
 public class ViewAdServlet extends HttpServlet {
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+    Ads adsDao = DaoFactory.getAdsDao();
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        //request.getRequestDispatcher("/ads/index.jsp").forward(request, response);
-
-        Ads adsDao = DaoFactory.getAdsDao();
 
         List<Ad> eachAd = adsDao.all();
 
