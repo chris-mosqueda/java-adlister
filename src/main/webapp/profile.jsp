@@ -12,5 +12,9 @@
         <h1>Viewing your profile - ${user}</h1>
     </div>
 
+    <form method="POST" action="/singleView">
+        <input type="submit" value="1 ad" name="submit">
+    </form>
+
 </body>
 </html>
