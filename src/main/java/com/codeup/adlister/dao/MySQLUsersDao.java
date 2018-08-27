@@ -22,35 +22,34 @@ public class MySQLUsersDao implements Users {
     }
 
     @Override
-    public List<User> findByUsername(String username) { // USE FOR USER LOGIN
-//        try {
-//            String query = "SELECT * FROM users WHERE username = ?";
-//
-//            PreparedStatement ps = connection.prepareStatement(query);
-//            ps.setString(1, user.get);
-//            ResultSet rs = ps.executeQuery();
-//
-//            List<User> newList = new ArrayList<>();
-//            while(rs.next()) {
-//                newList.add(new User(
-//                        rs.getString(1),
-//                        rs.getString(2),
-//                        rs.getString(3),
-//                        rs.getString(4)
-//                ));
-//            }
-//            return newList;
-//        } catch (SQLException e) {
-//            throw new RuntimeException("Error retrieving all users.", e);
-//        }
-    return null;
+    public User findByUsername(String username) { // USE FOR USER LOGIN
+        String query = "SELECT * FROM users WHERE username = ? LIMIT 1";
+        try {
+            PreparedStatement ps = connection.prepareStatement(query);
 
+            ps.setString(1, username);
+            return buildUser(ps.executeQuery());
+        } catch (SQLException e) {
+            throw new RuntimeException("Error retrieving all users.", e);
+        }
+    }
+
+    private User buildUser(ResultSet rs) throws SQLException {
+        if (! rs.next()) {
+            return null;
+        }
+        return new User(
+                rs.getLong(1),
+                rs.getString(2),
+                rs.getString(3),
+                rs.getString(4)
+        );
     }
 
     @Override
     public Long insert(User user) {
+        String sql = "INSERT INTO users(username, email, password) VALUES (?, ?, ?)";
         try {
-            String sql = "INSERT INTO users(username, email, password) VALUES (?, ?, ?)";
             PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, user.getUsername());
             ps.setString(2, user.getEmail());
