@@ -22,7 +22,7 @@ public class MySQLUsersDao implements Users {
     }
 
     @Override
-    public List<User> findByUsername(String username) {
+    public List<User> findByUsername(String username) { // USE FOR USER LOGIN
 //        try {
 //            String query = "SELECT * FROM users WHERE username = ?";
 //
